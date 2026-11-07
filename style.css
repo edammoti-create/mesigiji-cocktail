@@ -367,3 +367,12 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
   .map-dot__label { display: block; position: absolute; top: calc(100% + 5px); left: 50%; transform: translateX(-50%); color: var(--blue); font: 10px var(--serif); letter-spacing: .04em; white-space: nowrap; }
   .map-dot__tip { display: none; }
 }
+
+/* About: merged event intro (2026-11-07) */
+.about-subtitle { margin: 36px 0 14px; color: var(--ink); font-size: 16px; font-weight: 600; letter-spacing: .05em; }
+.practice-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
+.practice-gallery .profile-photo-link { box-shadow: 0 10px 26px rgba(35,62,72,.12); }
+.practice-gallery img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
+@media (max-width: 640px) {
+  .practice-gallery { grid-template-columns: 1fr; }
+}
