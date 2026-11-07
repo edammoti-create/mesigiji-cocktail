@@ -8,7 +8,7 @@
   <title>MeshiGiji Cocktail</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,8 +26,17 @@
   </header>
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-watermark" aria-hidden="true">Restaurant</div>
+      <svg class="hero-glass" viewBox="0 0 200 250" aria-hidden="true" focusable="false">
+        <path d="M16 28h168l-84 92v88m-44 30h88" />
+        <path class="glass-accent" d="M132 62l44-44" />
+        <circle class="glass-accent" cx="126" cy="70" r="11" />
+        <circle cx="74" cy="52" r="3" />
+        <circle cx="96" cy="76" r="2.4" />
+        <circle cx="62" cy="86" r="2" />
+      </svg>
       <p class="eyebrow">Taste the Moment</p>
-      <h1 id="hero-title">MeshiGiji <span>Cocktail</span></h1>
+      <h1 id="hero-title" class="logotype"><span class="logo-main">MeshiGiji</span><span class="logo-sub">Cocktail</span></h1>
       <p class="hero-copy">料理の「こころ」に触れるひとときを。</p>
       <a class="round-link" href="#about" aria-label="About へ移動">↓</a>
       <span class="hero-note">EST. 2026　·　VRChat</span>

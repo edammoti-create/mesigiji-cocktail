@@ -382,3 +382,126 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
 @media (max-width: 640px) {
   .practice-gallery { grid-template-columns: 1fr; }
 }
+
+/* ===== Design refinement — logotype (hero only), type scale contrast, stronger graphics, kept whitespace ===== */
+
+/* -- Eyebrow / notes / captions: smaller and quieter -- */
+.eyebrow { font-size: 9px; letter-spacing: .34em; color: rgba(73,0,1,.55); }
+.hero-note { font-size: 9px; letter-spacing: .22em; color: #7c8783; }
+.map-note { font-size: 10px; color: #75807c; }
+.schedule-note, .information-footnote { font-size: 11px; color: #75807c; }
+.cocktail-reading { font-size: 10px; }
+.layer-description { font-size: 11px; color: #6b7672; }
+
+/* -- Hero: one crafted logotype, watermark word, line-art glass -- */
+.hero-watermark {
+  position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); z-index: 0;
+  font: italic clamp(96px, 17vw, 224px)/1 var(--serif); color: rgba(35,62,72,.055);
+  white-space: nowrap; pointer-events: none;
+}
+.hero-glass {
+  position: absolute; right: clamp(2%, 6vw, 9%); top: 50%; transform: translateY(-54%); z-index: 0;
+  width: clamp(150px, 20vw, 250px); height: auto;
+  fill: none; stroke: rgba(35,62,72,.48); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+  pointer-events: none;
+}
+.hero-glass .glass-accent { stroke: rgba(73,0,1,.55); }
+.hero .eyebrow, .hero h1, .hero-copy, .hero .round-link, .hero .hero-note { position: relative; z-index: 1; }
+h1.logotype { margin-bottom: 32px; font-size: clamp(58px, 10.5vw, 134px); line-height: .92; letter-spacing: -.015em; }
+h1.logotype .logo-main { display: block; color: var(--wine); font-size: 1em; font-style: normal; }
+h1.logotype .logo-sub {
+  display: inline-block; position: relative; margin-top: -.34em; transform: translateX(1.1em);
+  color: var(--blue); font-size: .6em; font-style: italic; letter-spacing: .005em;
+}
+h1.logotype .logo-sub::before {
+  content: ""; position: absolute; left: -1.85em; top: 58%; width: 1.45em; height: 1px;
+  background: rgba(78,83,69,.75);
+}
+
+/* -- Section headings: clearly larger, with a drawn hairline -- */
+.intro h2, .closing h2 { font-size: clamp(30px, 4.8vw, 48px); }
+.intro h2::after {
+  content: ""; display: block; width: 76px; height: 2px; margin: 30px auto 2px;
+  background: var(--wine); box-shadow: 0 7px 0 -1px rgba(73,0,1,.35);
+}
+.event-intro h2 { font-size: clamp(27px, 4.2vw, 42px); }
+.event-subhead, .about-world-head { font-size: 21px; }
+.subpage-heading { min-height: 380px; }
+.subpage-heading h1 { font-size: clamp(48px, 8.5vw, 88px); }
+.schedule-content > h2, .information-content > h2 { font-size: clamp(36px, 5vw, 58px); }
+.subpage-content h2 { font-size: 36px; }
+
+/* -- Watermark words behind section headings -- */
+.intro { overflow: hidden; }
+.intro::before {
+  content: "About"; position: absolute; top: 44px; right: -16px; z-index: 0;
+  font: italic clamp(120px, 16vw, 190px)/1 var(--serif); color: rgba(35,62,72,.05); pointer-events: none;
+}
+.intro > * { position: relative; z-index: 1; }
+.subpage-heading { position: relative; overflow: hidden; }
+.subpage-heading::before {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font: italic clamp(110px, 17vw, 230px)/1 var(--serif); color: rgba(73,0,1,.05);
+  white-space: nowrap; pointer-events: none;
+}
+#schedule.subpage-heading::before { content: "Event"; }
+#character.subpage-heading::before { content: "Cast"; }
+#information.subpage-heading::before { content: "Join"; }
+.subpage-heading > * { position: relative; z-index: 1; }
+.character-page .subpage-content { position: relative; }
+.character-page .subpage-content::before {
+  content: "Taste"; position: absolute; top: -10px; right: 6px;
+  font: italic clamp(110px, 13vw, 160px)/1 var(--serif); color: rgba(35,62,72,.045); pointer-events: none;
+}
+
+/* -- Numbers and labels to lean on: much larger -- */
+.layer-index { font-size: 26px; align-self: stretch; display: flex; align-items: center; border-right: 1px solid rgba(35,62,72,.16); }
+.layer-title { font-size: clamp(24px, 3.4vw, 34px); }
+.step-number { font-size: 46px; }
+.schedule-number { font-size: 32px; }
+.schedule-date time { font-size: 30px; }
+.menu-group { border-top: 3px solid rgba(73,0,1,.5); }
+.menu-group h3 { font-size: 24px; }
+
+/* -- Taste map: tinted quadrants, firmer axes, larger dots -- */
+.taste-map {
+  border-color: rgba(35,62,72,.42);
+  background:
+    linear-gradient(90deg, rgba(125,14,26,.055) 0 50%, rgba(47,191,163,.05) 50% 100%),
+    linear-gradient(180deg, rgba(242,197,49,.07) 0 50%, rgba(109,58,42,.06) 50% 100%),
+    linear-gradient(90deg, transparent calc(50% - .5px), rgba(35,62,72,.38) 50%, transparent calc(50% + .5px)),
+    linear-gradient(0deg, transparent calc(50% - .5px), rgba(35,62,72,.38) 50%, transparent calc(50% + .5px)),
+    #f7f5ee;
+  box-shadow: 0 16px 34px rgba(35,62,72,.07), inset 0 0 0 6px rgba(255,255,255,.5);
+}
+.taste-axis { font-size: 12px; font-weight: 600; letter-spacing: .18em; }
+.map-dot { width: 60px; height: 60px; margin: -30px 0 0 -30px; border-width: 3px; }
+
+/* -- Character: bigger name, huge index number, firmer rules -- */
+.character-title-strip { min-height: 190px; border-bottom: 2px solid rgba(35,62,72,.55); }
+.character-title-strip h2 { font-size: clamp(66px, 9.5vw, 148px); }
+.character-hero-index { font-size: clamp(34px, 4vw, 48px); letter-spacing: .06em; }
+.character-hero-index i { font-size: 13px; letter-spacing: .14em; }
+.character-info-band { margin-top: 120px; margin-bottom: 150px; }
+
+/* -- Whitespace kept as design -- */
+.section { padding-top: 140px; padding-bottom: 140px; }
+
+@media (max-width: 640px) {
+  .section { padding-top: 96px; padding-bottom: 96px; }
+  h1.logotype { font-size: clamp(52px, 15vw, 76px); }
+  h1.logotype .logo-sub { transform: translateX(.8em); }
+  .hero-glass { width: 118px; right: -28px; opacity: .55; }
+  .hero-watermark { font-size: 25vw; bottom: 9%; }
+  .intro::before { font-size: 104px; top: 26px; }
+  .subpage-heading { min-height: 300px; }
+  .subpage-heading::before { font-size: 27vw; }
+  .character-title-strip { min-height: 140px; }
+  .character-title-strip h2 { font-size: clamp(46px, 13vw, 84px); }
+  .character-hero-index { font-size: 32px; }
+  .character-info-band { margin-top: 26px; margin-bottom: 96px; }
+  .layer-index { font-size: 20px; }
+  .step-number { font-size: 36px; }
+  .schedule-number { font-size: 24px; }
+  .map-dot { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
+}
