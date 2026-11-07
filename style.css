@@ -158,6 +158,8 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
 .character-standee { width: 100%; height: 100%; display: block; object-fit: contain; object-position: bottom; }
 .character-hero--tom .character-standee-link { right: clamp(12px, 6vw, 88px); }
 .character-hero--paradiel .character-standee-link { right: clamp(8px, 3vw, 46px); }
+.character-hero--sylvia .character-standee-link { height: 119%; }
+.character-hero--sylvia .character-standee { object-fit: cover; }
 .character-hero-index { position: absolute; z-index: 6; left: clamp(26px, 7.5vw, 112px); bottom: 25px; color: white; font: 12px var(--serif); letter-spacing: .12em; text-shadow: 0 1px 8px rgba(20,35,38,.55); }
 .character-hero-index i { color: rgba(255,255,255,.8); font-style: normal; }
 .character-info-band { position: relative; z-index: 6; width: min(calc(100% - 48px), 1320px); margin: 96px auto 116px; padding: clamp(24px, 3vw, 42px); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 26px 38px; border-top: 3px solid var(--blue); color: var(--ink); background: rgba(245,247,244,.9); box-shadow: 0 18px 48px rgba(20,35,38,.12); backdrop-filter: blur(3px); }
@@ -257,6 +259,7 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
 @media (min-width: 641px) and (max-width: 1520px) {
   .character-hero { height: auto; min-height: 0; aspect-ratio: 3508 / 2480; }
   .character-standee-link { right: 2%; bottom: 0; height: 100%; max-width: 70%; }
+  .character-hero--sylvia .character-standee-link { height: 106%; }
   .character-info-band { margin: 24px auto 88px; padding: 28px; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
   .band-copy--cocktail { grid-template-columns: minmax(110px,.7fr) minmax(160px,1fr) minmax(220px,1.8fr); }
   .band-copy p { font-size: 11px; }
@@ -317,6 +320,7 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
   .character-hero--alex .character-backdrop img { object-position: 35% 0%; transform: translateY(3%) scale(1.06); }
   .character-hero-wash { background: linear-gradient(180deg, rgba(245,247,244,.34) 0%, rgba(245,247,244,.22) 35%, rgba(245,247,244,.04) 76%), linear-gradient(0deg, rgba(35,62,72,.08), transparent 25%); }
   .character-standee-link { right: 0; bottom: 0; height: 94%; max-width: 82%; }
+  .character-hero--sylvia .character-standee-link { height: 100%; }
   .character-hero-index { left: 22px; bottom: 18px; }
   .character-info-band { width: calc(100% - 32px); margin: 18px auto 74px; padding: 20px; grid-template-columns: 1fr; gap: 19px; }
   .band-copy--cocktail { grid-column: 1; padding-bottom: 16px; grid-template-columns: 1fr; gap: 7px; }
@@ -333,6 +337,8 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
 .character-hero--capone .character-backdrop img { object-position: center 38%; }
 .character-hero--pakuha .character-backdrop img { object-position: center 35%; }
 .character-hero--arangela .character-backdrop img { object-position: center 40%; }
+.character-hero--saltinu .character-backdrop img { object-position: 50% 30%; }
+.character-hero--sylvia .character-backdrop img { object-position: 28% 12%; }
 
 /* --- Collection: taste map --- */
 .taste-map { position: relative; max-width: 860px; margin: 40px auto 10px; aspect-ratio: 4 / 3; border: 1px solid rgba(35,62,72,.18); background:
