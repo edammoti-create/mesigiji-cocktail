@@ -124,3 +124,31 @@ if (photoLightbox) {
   });
 }
 
+/* View toggle: force PC / mobile layout (preview switch) */
+(() => {
+  const root = document.documentElement;
+  const meta = document.querySelector('meta[name="viewport"]');
+  const DEFAULT_META = 'width=device-width, initial-scale=1';
+  const buttons = document.querySelectorAll('.view-toggle [data-view-set]');
+  if (!buttons.length) return;
+  const apply = (mode) => {
+    if (mode === 'pc' || mode === 'sp') {
+      root.setAttribute('data-view', mode);
+      if (meta) meta.setAttribute('content', mode === 'pc' ? 'width=1280' : DEFAULT_META);
+    } else {
+      root.removeAttribute('data-view');
+      if (meta) meta.setAttribute('content', DEFAULT_META);
+    }
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.viewSet === mode)));
+    try {
+      if (mode) localStorage.setItem('mesigiji-view', mode);
+      else localStorage.removeItem('mesigiji-view');
+    } catch (e) {}
+  };
+  let saved = null;
+  try { saved = localStorage.getItem('mesigiji-view'); } catch (e) {}
+  if (saved === 'pc' || saved === 'sp') apply(saved);
+  buttons.forEach((b) => b.addEventListener('click', () => {
+    apply(root.getAttribute('data-view') === b.dataset.viewSet ? null : b.dataset.viewSet);
+  }));
+})();

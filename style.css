@@ -574,3 +574,201 @@ body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom
 }
 
 /* jump bar live check 2026-11-11 */
+
+/* ===== View toggle (PC / mobile preview switch, preview tool) ===== */
+.view-toggle {
+  position: fixed; right: 14px; bottom: 14px; z-index: 70;
+  display: flex; gap: 2px; padding: 3px;
+  background: rgba(23, 47, 56, .92);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15); backdrop-filter: blur(10px) saturate(1.15);
+  border: 1px solid rgba(213, 197, 152, .45); border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(13, 32, 39, .35);
+}
+body:has(.cast-jumpbar) .view-toggle { bottom: 86px; }
+.view-toggle button {
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  padding: 7px 14px; border-radius: 999px;
+  color: var(--cream); font: 12px var(--jp); letter-spacing: .12em;
+  transition: background .15s ease, color .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.view-toggle button:hover { color: #fff; }
+.view-toggle button[aria-pressed="true"] { background: #d5c598; color: #172f38; }
+.view-toggle button:focus-visible { outline: 2px solid #d5c598; outline-offset: 2px; }
+
+/* Force the mobile (<=640px) layout on wide screens when data-view="sp" */
+@media (min-width: 641px) {
+  html[data-view="sp"] .site-header { height: 64px; padding: 0 22px; }
+  html[data-view="sp"] .wordmark { font-size: 16px; }
+  html[data-view="sp"] .site-nav { display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 24px; flex-direction: column; align-items: center; gap: 24px; background: var(--blue); }
+  html[data-view="sp"] .site-nav.is-open { display: flex; }
+  html[data-view="sp"] .menu-toggle { width: 30px; height: 30px; padding: 4px; display: flex; flex-direction: column; justify-content: center; gap: 6px; border: 0; background: none; }
+  html[data-view="sp"] .menu-toggle span { width: 21px; height: 1px; background: #d5dbd7; }
+  html[data-view="sp"] .hero { min-height: 590px; height: 78vh; }
+  html[data-view="sp"] .hero::before { width: 310px; height: 310px; }
+  html[data-view="sp"] .hero::after { width: 365px; height: 365px; }
+  html[data-view="sp"] .hero-copy { font-size: 13px; }
+  html[data-view="sp"] .section { padding: 82px 24px; }
+  html[data-view="sp"] .intro h2 { font-size: 24px; }
+  html[data-view="sp"] .section-heading { display: block; margin-bottom: 28px; }
+  html[data-view="sp"] .section-heading h2 { font-size: 31px; }
+  html[data-view="sp"] .heading-note { margin-top: 12px; }
+  html[data-view="sp"] .card-grid { grid-template-columns: 1fr; gap: 37px; }
+  html[data-view="sp"] .card-art { width: min(68vw, 230px); }
+  html[data-view="sp"] .closing-copy { font-size: 12px; line-height: 2.1; }
+  html[data-view="sp"] .desktop-break { display: none; }
+  html[data-view="sp"] .closing::before { top: 22px; left: 3%; font-size: 31px; }
+  html[data-view="sp"] .closing::after { right: 4%; bottom: 22px; }
+  html[data-view="sp"] .site-footer { min-height: 96px; }
+  html[data-view="sp"] .footer-brand { font-size: 14px; }
+  html[data-view="sp"] .site-footer > span { font-size: 8px; }
+  html[data-view="sp"] .layer-link { min-height: 98px; padding: 17px 18px; grid-template-columns: 42px 1fr 24px; gap: 12px; }
+  html[data-view="sp"] .layer-link:hover { padding-left: 22px; }
+  html[data-view="sp"] .layer-index { font-size: 14px; }
+  html[data-view="sp"] .layer-description { font-size: 11px; }
+  html[data-view="sp"] .subpage-heading { min-height: 280px; padding: 40px 20px; }
+  html[data-view="sp"] .subpage-content { min-height: 260px; padding: 64px 24px; }
+  html[data-view="sp"] .schedule-content { padding: 64px 24px 78px; }
+  html[data-view="sp"] .information-content { padding: 64px 24px 78px; }
+  html[data-view="sp"] .schedule-card { min-height: 132px; padding: 22px 18px; grid-template-columns: 34px 1fr; gap: 13px; }
+  html[data-view="sp"] .schedule-tag { grid-column: 2; justify-self: start; margin-top: 2px; }
+  html[data-view="sp"] .schedule-date { gap: 8px; }
+  html[data-view="sp"] .schedule-date time { font-size: 21px; }
+  html[data-view="sp"] .schedule-date span { font-size: 12px; }
+  html[data-view="sp"] .schedule-card h3 { font-size: 17px; }
+  html[data-view="sp"] .join-step { grid-template-columns: 42px 1fr; gap: 12px; padding: 24px 0; }
+  html[data-view="sp"] .join-step h3 { font-size: 16px; }
+  html[data-view="sp"] .join-step p { font-size: 12px; }
+  html[data-view="sp"] .action-links { flex-direction: column; align-items: stretch; }
+  html[data-view="sp"] .action-button { width: 100%; }
+  html[data-view="sp"] .photo-lightbox { width: 96vw; height: 90vh; padding: 44px 8px 8px; }
+  html[data-view="sp"] .profile-text-block p { font-size: 12px; }
+  html[data-view="sp"] .character-title-strip { min-height: 112px; padding: 18px 22px 14px; gap: 10px; }
+  html[data-view="sp"] .character-title-strip .eyebrow { margin-bottom: 4px; font-size: 8px; letter-spacing: .12em; }
+  html[data-view="sp"] .character-title-strip h2 { font-size: clamp(38px, 10vw, 62px); }
+  html[data-view="sp"] .character-title-strip .character-japanese { margin-bottom: 4px; font-size: 19px; }
+  html[data-view="sp"] .character-hero { min-height: 600px; height: 155vw; max-height: 760px; margin-bottom: 0; overflow: visible; }
+  html[data-view="sp"] .character-hero--tom .character-backdrop img { object-position: 42% center; }
+  html[data-view="sp"] .character-hero--paradiel .character-backdrop img { object-position: 48% center; }
+  html[data-view="sp"] .character-hero--alex .character-backdrop img { object-position: 35% 0%; transform: translateY(3%) scale(1.06); }
+  html[data-view="sp"] .character-hero-wash { background: linear-gradient(180deg, rgba(245,247,244,.34) 0%, rgba(245,247,244,.22) 35%, rgba(245,247,244,.04) 76%), linear-gradient(0deg, rgba(35,62,72,.08), transparent 25%); }
+  html[data-view="sp"] .character-standee-link { right: 0; bottom: 0; height: 94%; max-width: 82%; }
+  html[data-view="sp"] .character-hero--sylvia .character-standee-link { height: 100%; }
+  html[data-view="sp"] .character-hero-index { left: 22px; bottom: 18px; }
+  html[data-view="sp"] .character-info-band { width: calc(100% - 32px); margin: 18px auto 74px; padding: 20px; grid-template-columns: 1fr; gap: 19px; }
+  html[data-view="sp"] .band-copy--cocktail { grid-column: 1; padding-bottom: 16px; grid-template-columns: 1fr; gap: 7px; }
+  html[data-view="sp"] .band-copy--cocktail .band-motto { grid-column: 1; }
+  html[data-view="sp"] .band-copy p { font-size: 12px; line-height: 1.9; }
+  html[data-view="sp"] .taste-map { aspect-ratio: 3 / 4; }
+  html[data-view="sp"] .map-dot__label { display: block; position: absolute; top: calc(100% + 5px); left: 50%; transform: translateX(-50%); color: var(--blue); font: 10px var(--serif); letter-spacing: .04em; white-space: nowrap; }
+  html[data-view="sp"] .map-dot__tip { display: none; }
+  html[data-view="sp"] .practice-gallery { grid-template-columns: 1fr; }
+  html[data-view="sp"] .section { padding-top: 96px; padding-bottom: 96px; }
+  html[data-view="sp"] h1.logotype { font-size: clamp(52px, 15vw, 76px); }
+  html[data-view="sp"] h1.logotype .logo-sub { transform: translateX(.8em); }
+  html[data-view="sp"] .hero-glass { width: 118px; right: -28px; opacity: .55; }
+  html[data-view="sp"] .hero-watermark { font-size: 25vw; bottom: 9%; }
+  html[data-view="sp"] .intro::before { font-size: 104px; top: 26px; }
+  html[data-view="sp"] .subpage-heading { min-height: 300px; }
+  html[data-view="sp"] .subpage-heading::before { font-size: 27vw; }
+  html[data-view="sp"] .character-title-strip { min-height: 140px; }
+  html[data-view="sp"] .character-title-strip h2 { font-size: clamp(46px, 13vw, 84px); }
+  html[data-view="sp"] .character-hero-index { font-size: 32px; }
+  html[data-view="sp"] .character-info-band { margin-top: 26px; margin-bottom: 96px; }
+  html[data-view="sp"] .layer-index { font-size: 20px; }
+  html[data-view="sp"] .step-number { font-size: 36px; }
+  html[data-view="sp"] .schedule-number { font-size: 24px; }
+  html[data-view="sp"] .map-dot { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
+  html[data-view="sp"] .cast-jumpbar__track { gap: 9px; padding-left: 12px; padding-right: 12px; }
+}
+
+/* Restore the desktop layout on narrow screens when data-view="pc" */
+@media (max-width: 640px) {
+  html[data-view="pc"] .site-header { height: 76px; padding: 0 clamp(22px, 6vw, 96px); }
+  html[data-view="pc"] .wordmark { font-size: medium; }
+  html[data-view="pc"] .site-nav { display: flex; position: static; top: auto; left: auto; right: auto; padding: 0; flex-direction: row; align-items: normal; gap: 34px; background: none; }
+  html[data-view="pc"] .site-nav.is-open { display: block; }
+  html[data-view="pc"] .menu-toggle { width: auto; height: auto; padding: 0; display: none; flex-direction: row; justify-content: normal; gap: normal; border: none; background: none; }
+  html[data-view="pc"] .menu-toggle span { width: auto; height: auto; background: none; }
+  html[data-view="pc"] .hero { min-height: 620px; height: min(76vh, 820px); }
+  html[data-view="pc"] .hero::before { width: 440px; height: 440px; }
+  html[data-view="pc"] .hero::after { width: 510px; height: 510px; }
+  html[data-view="pc"] .hero-copy { font-size: 14px; }
+  html[data-view="pc"] .section { padding: 112px max(24px, calc((100% - 1040px)/2)); }
+  html[data-view="pc"] .intro h2 { font-size: medium; }
+  html[data-view="pc"] .section-heading { display: flex; margin-bottom: 40px; }
+  html[data-view="pc"] .section-heading h2 { font-size: medium; }
+  html[data-view="pc"] .heading-note { margin-top: 0; }
+  html[data-view="pc"] .card-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  html[data-view="pc"] .card-art { width: min(100%, 260px); }
+  html[data-view="pc"] .closing-copy { font-size: 13px; line-height: 2.25; }
+  html[data-view="pc"] .desktop-break { display: block; }
+  html[data-view="pc"] .closing::before { top: 38px; left: 7%; font-size: medium; }
+  html[data-view="pc"] .closing::after { right: 8%; bottom: 40px; }
+  html[data-view="pc"] .site-footer { min-height: 108px; }
+  html[data-view="pc"] .footer-brand { font-size: 16px; }
+  html[data-view="pc"] .site-footer > span { font-size: medium; }
+  html[data-view="pc"] .layer-link { min-height: 112px; padding: 20px clamp(20px, 4vw, 42px); grid-template-columns: 70px 1fr 30px; gap: 22px; }
+  html[data-view="pc"] .layer-link:hover { padding-left: clamp(25px, 4.5vw, 48px); }
+  html[data-view="pc"] .layer-index { font-size: medium; }
+  html[data-view="pc"] .layer-description { font-size: 11px; }
+  html[data-view="pc"] .subpage-heading { min-height: 380px; padding: 0; }
+  html[data-view="pc"] .subpage-content { min-height: 300px; padding: 86px 24px; }
+  html[data-view="pc"] .schedule-content { padding: 0; }
+  html[data-view="pc"] .information-content { padding: clamp(64px, 9vw, 120px) clamp(24px, 7vw, 100px); }
+  html[data-view="pc"] .schedule-card { min-height: 150px; padding: 28px clamp(22px, 4vw, 52px); grid-template-columns: 55px 1fr auto; gap: 22px; }
+  html[data-view="pc"] .schedule-tag { grid-column: auto; margin-top: 0; }
+  html[data-view="pc"] .schedule-date { gap: 14px; }
+  html[data-view="pc"] .schedule-date time { font-size: 30px; }
+  html[data-view="pc"] .schedule-date span { font-size: 14px; }
+  html[data-view="pc"] .schedule-card h3 { font-size: medium; }
+  html[data-view="pc"] .join-step { grid-template-columns: 68px 1fr; gap: 20px; padding: 30px 0; }
+  html[data-view="pc"] .join-step h3 { font-size: medium; }
+  html[data-view="pc"] .join-step p { font-size: 13px; }
+  html[data-view="pc"] .action-links { flex-direction: row; align-items: normal; }
+  html[data-view="pc"] .action-button { width: auto; }
+  html[data-view="pc"] .photo-lightbox { width: min(94vw, 1500px); height: min(92vh, 1100px); padding: 44px 18px 18px; }
+  html[data-view="pc"] .profile-text-block p { font-size: 13px; }
+  html[data-view="pc"] .character-title-strip { min-height: 155px; padding: 25px clamp(26px, 7.5vw, 112px) 19px; gap: 20px; }
+  html[data-view="pc"] .character-title-strip .eyebrow { margin-bottom: 0; font-size: medium; letter-spacing: normal; }
+  html[data-view="pc"] .character-title-strip h2 { font-size: clamp(66px, 9.5vw, 148px); }
+  html[data-view="pc"] .character-title-strip .character-japanese { margin-bottom: 0; font-size: clamp(20px, 2.5vw, 30px); }
+  html[data-view="pc"] .character-hero { min-height: 0; height: auto; max-height: none; margin-bottom: 0; overflow: visible; }
+  html[data-view="pc"] .character-hero--tom .character-backdrop img { object-position: center 38%; }
+  html[data-view="pc"] .character-hero--paradiel .character-backdrop img { object-position: center 43%; }
+  html[data-view="pc"] .character-hero--alex .character-backdrop img { object-position: 50% 0%; transform: none; }
+  html[data-view="pc"] .character-hero-wash { background: linear-gradient(90deg, rgba(245,247,244,.28) 0%, rgba(245,247,244,.18) 32%, rgba(245,247,244,.035) 63%, rgba(35,62,72,.01) 100%), linear-gradient(0deg, rgba(35,62,72,.08), transparent 28%); }
+  html[data-view="pc"] .character-standee-link { right: clamp(8px, 4vw, 62px); bottom: -10%; height: 112%; max-width: 62%; }
+  html[data-view="pc"] .character-hero--sylvia .character-standee-link { height: 119%; }
+  html[data-view="pc"] .character-hero-index { left: clamp(26px, 7.5vw, 112px); bottom: 25px; }
+  html[data-view="pc"] .character-info-band { width: min(calc(100% - 48px), 1320px); margin: 96px auto 116px; padding: clamp(24px, 3vw, 42px); grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 26px 38px; }
+  html[data-view="pc"] .band-copy--cocktail { grid-column: 1 / -1; padding-bottom: 22px; grid-template-columns: minmax(120px,.55fr) minmax(180px,1fr) minmax(260px,1.8fr); gap: 7px 22px; }
+  html[data-view="pc"] .band-copy--cocktail .band-motto { grid-column: 2 / -1; }
+  html[data-view="pc"] .band-copy p { font-size: 12px; line-height: 1.85; }
+  html[data-view="pc"] .taste-map { aspect-ratio: auto; }
+  html[data-view="pc"] .map-dot__label { display: none; position: static; top: auto; left: auto; transform: none; letter-spacing: normal; }
+  html[data-view="pc"] .map-dot__tip { display: grid; }
+  html[data-view="pc"] .practice-gallery { grid-template-columns: repeat(3, 1fr); }
+  html[data-view="pc"] .section { padding-top: 0; padding-bottom: 0; }
+  html[data-view="pc"] h1.logotype { font-size: clamp(58px, 10.5vw, 134px); }
+  html[data-view="pc"] h1.logotype .logo-sub { transform: translateX(1.1em); }
+  html[data-view="pc"] .hero-glass { width: clamp(150px, 20vw, 250px); right: clamp(2%, 6vw, 9%); opacity: 1; }
+  html[data-view="pc"] .hero-watermark { font-size: medium; bottom: auto; }
+  html[data-view="pc"] .intro::before { font-size: medium; top: 44px; }
+  html[data-view="pc"] .subpage-heading { min-height: 380px; }
+  html[data-view="pc"] .subpage-heading::before { font-size: medium; }
+  html[data-view="pc"] .character-title-strip { min-height: 155px; }
+  html[data-view="pc"] .character-title-strip h2 { font-size: clamp(66px, 9.5vw, 148px); }
+  html[data-view="pc"] .character-hero-index { font-size: clamp(34px, 4vw, 48px); }
+  html[data-view="pc"] .character-info-band { margin-top: 120px; margin-bottom: 150px; }
+  html[data-view="pc"] .layer-index { font-size: medium; }
+  html[data-view="pc"] .step-number { font-size: 46px; }
+  html[data-view="pc"] .schedule-number { font-size: 32px; }
+  html[data-view="pc"] .map-dot { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
+  html[data-view="pc"] .cast-jumpbar__track { gap: 10px; padding-left: 0; padding-right: 0; }
+}
+
+@media (max-width: 640px) {
+  html[data-view="pc"] .schedule-tag { justify-self: auto; }
+  html[data-view="pc"] .map-dot__label { color: inherit; font: inherit; white-space: normal; }
+}
