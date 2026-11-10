@@ -514,3 +514,7 @@ h1.logotype .logo-sub::before {
 .character-hero--koreru .character-backdrop img { object-position: center 25%; }
 .character-hero--tigu .character-backdrop img { object-position: center 30%; }
 .character-hero--raimu .character-backdrop img { object-position: center 35%; }
+
+/* Shiki & Tigu: standee on the LEFT (images are NOT flipped) */
+.character-hero--shiki .character-standee-link, .character-hero--tigu .character-standee-link { right: auto; left: clamp(8px, 4vw, 62px); }
+.character-hero--shiki .character-hero-index, .character-hero--tigu .character-hero-index { left: auto; right: clamp(26px, 7.5vw, 112px); }
