@@ -508,3 +508,9 @@ h1.logotype .logo-sub::before {
 
 /* Text-only cast (no images yet): tighten the gap above the info band */
 .character-info-band.character-info-band--textonly { margin-top: 40px; }
+
+/* Portraits added 2026-11-10: face positions */
+.character-hero--shiki .character-backdrop img { object-position: center 30%; }
+.character-hero--koreru .character-backdrop img { object-position: center 25%; }
+.character-hero--tigu .character-backdrop img { object-position: center 30%; }
+.character-hero--raimu .character-backdrop img { object-position: center 35%; }
