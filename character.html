@@ -5,7 +5,7 @@
   <meta name="theme-color" content="#233e48"><title>Character | MeshiGiji Cocktail</title>
   <meta name="description" content="カクテルをもとに生まれたキャラクターたちの紹介。">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=20261110-3">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=20261111-1">
 </head>
 <body>
   <header class="site-header">
@@ -274,7 +274,56 @@
     <div class="character-back"><a class="back-home" href="index.html">Back to About ↑</a></div>
   </main>
   <dialog class="photo-lightbox" id="photo-lightbox" aria-label="画像拡大表示"><button class="lightbox-close" type="button" aria-label="閉じる">×</button><span class="lightbox-hint">ホイールで拡大 ・ ドラッグで移動</span><img src="assets/tom-portrait.png" alt="拡大画像"></dialog>
-  <footer class="site-footer"><a class="footer-brand" href="index.html">MeshiGiji <i>Cocktail</i></a><span>© 2026 MESIGIJI</span></footer><script src="script.js"></script>
+  <footer class="site-footer"><a class="footer-brand" href="index.html">MeshiGiji <i>Cocktail</i></a><span>© 2026 MESIGIJI</span></footer>  <nav class="cast-jumpbar" aria-label="キャスト紹介へのジャンプ">
+    <div class="cast-jumpbar__track">
+      <a class="cast-jumpbar__item" href="#tom-title" data-name="トム" aria-label="トムの紹介へ移動"><img src="assets/icon-tom.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#paradiel-title" data-name="パラディエル" aria-label="パラディエルの紹介へ移動"><img src="assets/icon-paradiel.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#alex-title" data-name="アレク" aria-label="アレクの紹介へ移動"><img src="assets/icon-alex.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#camellia-title" data-name="カメリア" aria-label="カメリアの紹介へ移動"><img src="assets/icon-camellia.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#capone-title" data-name="カポーネ" aria-label="カポーネの紹介へ移動"><img src="assets/icon-capone.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#pakuha-title" data-name="パクハ" aria-label="パクハの紹介へ移動"><img src="assets/icon-pakuha.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#arangela-title" data-name="アランジェラ" aria-label="アランジェラの紹介へ移動"><img src="assets/icon-arangela.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#saltinu-title" data-name="サルティヌ" aria-label="サルティヌの紹介へ移動"><img src="assets/icon-saltinu.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#sylvia-title" data-name="シルヴィア" aria-label="シルヴィアの紹介へ移動"><img src="assets/icon-sylvia.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#gran-title" data-name="グラン" aria-label="グランの紹介へ移動"><img src="assets/icon-gran.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#laranja-title" data-name="ラランジャ" aria-label="ラランジャの紹介へ移動"><img src="assets/icon-laranja.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#salkes-title" data-name="サルクス" aria-label="サルクスの紹介へ移動"><img src="assets/icon-salkes.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#leafche-title" data-name="リーフチェ" aria-label="リーフチェの紹介へ移動"><img src="assets/icon-leafche.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#shiki-title" data-name="古井 式" aria-label="古井 式の紹介へ移動"><img src="assets/icon-shiki.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#koreru-title" data-name="コレル" aria-label="コレルの紹介へ移動"><img src="assets/icon-koreru.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#tigu-title" data-name="ティグ" aria-label="ティグの紹介へ移動"><img src="assets/icon-tigu.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+      <a class="cast-jumpbar__item" href="#raimu-title" data-name="らいむ" aria-label="らいむの紹介へ移動"><img src="assets/icon-raimu.png" alt="" width="512" height="512" loading="lazy" decoding="async"></a>
+    </div>
+    <span class="cast-jumpbar__tooltip" aria-hidden="true"></span>
+  </nav>
+  <script>
+const castJumpbar = document.querySelector('.cast-jumpbar');
+
+if (castJumpbar) {
+  const castTrack = castJumpbar.querySelector('.cast-jumpbar__track');
+  const castTooltip = castJumpbar.querySelector('.cast-jumpbar__tooltip');
+  const showCastTip = (item) => {
+    const barRect = castJumpbar.getBoundingClientRect();
+    const rect = item.getBoundingClientRect();
+    const center = rect.left - barRect.left + rect.width / 2;
+    castTooltip.textContent = item.dataset.name || '';
+    castTooltip.style.left = `${Math.max(46, Math.min(barRect.width - 46, center))}px`;
+    castTooltip.classList.add('is-visible');
+  };
+  const hideCastTip = () => castTooltip.classList.remove('is-visible');
+
+  castTrack.querySelectorAll('.cast-jumpbar__item').forEach((item) => {
+    item.addEventListener('mouseenter', () => showCastTip(item));
+    item.addEventListener('mouseleave', hideCastTip);
+    item.addEventListener('focus', () => showCastTip(item));
+    item.addEventListener('blur', hideCastTip);
+    item.addEventListener('click', () => showCastTip(item));
+  });
+  castTrack.addEventListener('scroll', hideCastTip, { passive: true });
+  window.addEventListener('resize', hideCastTip);
+}
+  </script>
+<script src="script.js"></script>
 </body>
 </html>
 
