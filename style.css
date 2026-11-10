@@ -572,3 +572,5 @@ body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom
 @media (max-width: 640px) {
   .cast-jumpbar__track { gap: 9px; padding-left: 12px; padding-right: 12px; }
 }
+
+/* jump bar live check 2026-11-11 */
