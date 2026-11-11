@@ -5,7 +5,7 @@
   <meta name="theme-color" content="#233e48"><title>Character | MeshiGiji Cocktail</title>
   <meta name="description" content="カクテルをもとに生まれたキャラクターたちの紹介。">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=20261111-2">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=20261111-3">
 </head>
 <body>
   <header class="site-header">
@@ -302,27 +302,77 @@ const castJumpbar = document.querySelector('.cast-jumpbar');
 if (castJumpbar) {
   const castTrack = castJumpbar.querySelector('.cast-jumpbar__track');
   const castTooltip = castJumpbar.querySelector('.cast-jumpbar__tooltip');
-  const showCastTip = (item) => {
+  const castItems = [...castTrack.querySelectorAll('.cast-jumpbar__item')];
+  const castSections = castItems.map((item) => {
+    const target = document.querySelector(item.getAttribute('href'));
+    return target ? (target.closest('.character-title-strip') || target) : null;
+  });
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let castActive = -1;
+  let castHover = null;
+
+  const positionTip = (item) => {
     const barRect = castJumpbar.getBoundingClientRect();
     const rect = item.getBoundingClientRect();
     const center = rect.left - barRect.left + rect.width / 2;
-    castTooltip.textContent = item.dataset.name || '';
     castTooltip.style.left = `${Math.max(46, Math.min(barRect.width - 46, center))}px`;
+  };
+  const refreshTip = () => {
+    const item = castHover || (castActive >= 0 ? castItems[castActive] : null);
+    if (!item) { castTooltip.classList.remove('is-visible'); return; }
+    castTooltip.textContent = item.dataset.name || '';
+    positionTip(item);
     castTooltip.classList.add('is-visible');
   };
-  const hideCastTip = () => castTooltip.classList.remove('is-visible');
+  const centerItem = (item) => {
+    const rect = item.getBoundingClientRect();
+    const trackRect = castTrack.getBoundingClientRect();
+    const delta = (rect.left + rect.width / 2) - (trackRect.left + trackRect.width / 2);
+    castTrack.scrollTo({ left: castTrack.scrollLeft + delta, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+  const setActive = (index) => {
+    if (index === castActive) return;
+    castActive = index;
+    castItems.forEach((item, i) => {
+      item.classList.toggle('is-active', i === index);
+      item.classList.toggle('is-near', index >= 0 && Math.abs(i - index) === 1);
+      if (i === index) item.setAttribute('aria-current', 'true');
+      else item.removeAttribute('aria-current');
+    });
+    if (index >= 0) centerItem(castItems[index]);
+    refreshTip();
+  };
+  const updateSpy = () => {
+    const line = window.innerHeight * 0.42;
+    let index = -1;
+    castSections.forEach((sec, i) => {
+      if (sec && sec.getBoundingClientRect().top <= line) index = i;
+    });
+    setActive(index);
+  };
+  let spyQueued = false;
+  const queueSpy = () => {
+    if (spyQueued) return;
+    spyQueued = true;
+    requestAnimationFrame(() => { spyQueued = false; updateSpy(); });
+  };
+  window.addEventListener('scroll', queueSpy, { passive: true });
+  window.addEventListener('resize', queueSpy);
+  castTrack.addEventListener('scroll', () => {
+    const item = castHover || (castActive >= 0 ? castItems[castActive] : null);
+    if (item) positionTip(item);
+  }, { passive: true });
 
-  castTrack.querySelectorAll('.cast-jumpbar__item').forEach((item) => {
-    item.addEventListener('mouseenter', () => showCastTip(item));
-    item.addEventListener('mouseleave', hideCastTip);
-    item.addEventListener('focus', () => showCastTip(item));
-    item.addEventListener('blur', hideCastTip);
-    item.addEventListener('click', () => showCastTip(item));
+  castItems.forEach((item) => {
+    item.addEventListener('mouseenter', () => { castHover = item; refreshTip(); });
+    item.addEventListener('mouseleave', () => { castHover = null; refreshTip(); });
+    item.addEventListener('focus', () => { castHover = item; refreshTip(); });
+    item.addEventListener('blur', () => { castHover = null; refreshTip(); });
+    item.addEventListener('click', () => { castHover = item; refreshTip(); });
   });
-  castTrack.addEventListener('scroll', hideCastTip, { passive: true });
-  window.addEventListener('resize', hideCastTip);
+  updateSpy();
 }
-  </script>
+</script>
   <div class="view-toggle" role="group" aria-label="表示モード切り替え">
     <button type="button" data-view-set="pc" aria-pressed="false">PC</button>
     <button type="button" data-view-set="sp" aria-pressed="false">携帯</button>

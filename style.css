@@ -521,21 +521,25 @@ h1.logotype .logo-sub::before {
 
 /* ===== Cast jump bar — fixed bottom bar of round face icons ===== */
 /* Keep the page end clear of the fixed bar (character page only) */
-body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+body:has(.cast-jumpbar) { padding-bottom: calc(108px + env(safe-area-inset-bottom, 0px)); }
 /* Jump targets: keep the whole title strip (eyebrow + name) in view */
 .character-title-strip h2 { scroll-margin-top: 128px; }
 .cast-jumpbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
   display: flex; justify-content: center;
+}
+.cast-jumpbar::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 68px; z-index: -1;
   background: rgba(23, 47, 56, .9);
   -webkit-backdrop-filter: blur(10px) saturate(1.15); backdrop-filter: blur(10px) saturate(1.15);
   border-top: 1px solid rgba(213, 197, 152, .38);
   box-shadow: 0 -8px 28px rgba(13, 32, 39, .28);
 }
 .cast-jumpbar__track {
-  display: flex; align-items: center; gap: 10px;
-  max-width: 100%; overflow-x: auto; overflow-y: hidden;
-  padding: 11px 16px calc(11px + env(safe-area-inset-bottom, 0px));
+  display: flex; align-items: flex-end; gap: 10px;
+  max-width: 100%; height: calc(102px + env(safe-area-inset-bottom, 0px));
+  overflow-x: auto; overflow-y: hidden;
+  padding: 0 16px calc(11px + env(safe-area-inset-bottom, 0px));
   scrollbar-width: none; -ms-overflow-style: none;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
@@ -544,9 +548,12 @@ body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom
 .cast-jumpbar__item {
   flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
   scroll-snap-align: center;
-  transition: transform .16s ease;
+  transition: width .35s cubic-bezier(.34, 1.45, .64, 1), height .35s cubic-bezier(.34, 1.45, .64, 1), transform .35s cubic-bezier(.34, 1.45, .64, 1);
   -webkit-tap-highlight-color: transparent;
 }
+.cast-jumpbar__item.is-near { width: 54px; height: 54px; }
+.cast-jumpbar__item.is-active { width: 64px; height: 64px; transform: translateY(-5px); }
+.cast-jumpbar__item.is-active img { box-shadow: 0 0 0 2px #d5c598, 0 6px 16px rgba(0, 0, 0, .45); }
 .cast-jumpbar__item img {
   display: block; width: 100%; height: 100%; border-radius: 50%;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .28), 0 2px 8px rgba(0, 0, 0, .35);
@@ -570,7 +577,30 @@ body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom
 }
 .cast-jumpbar__tooltip.is-visible { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
 @media (max-width: 640px) {
-  .cast-jumpbar__track { gap: 9px; padding-left: 12px; padding-right: 12px; }
+  .cast-jumpbar::before { height: 62px; }
+  .cast-jumpbar__track { gap: 9px; height: calc(86px + env(safe-area-inset-bottom, 0px)); padding-left: 12px; padding-right: 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .cast-jumpbar__item { width: 42px; height: 42px; }
+  .cast-jumpbar__item.is-near { width: 48px; height: 48px; }
+  .cast-jumpbar__item.is-active { width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cast-jumpbar__item { transition: none; }
+}
+/* View-toggle forced modes keep the same jump-bar geometry */
+@media (min-width: 641px) {
+  html[data-view="sp"] .cast-jumpbar::before { height: 62px; }
+  html[data-view="sp"] .cast-jumpbar__track { height: calc(86px + env(safe-area-inset-bottom, 0px)); padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  html[data-view="sp"] .cast-jumpbar__item { width: 42px; height: 42px; }
+  html[data-view="sp"] .cast-jumpbar__item.is-near { width: 48px; height: 48px; }
+  html[data-view="sp"] .cast-jumpbar__item.is-active { width: 56px; height: 56px; }
+  html[data-view="sp"] body:has(.cast-jumpbar) .view-toggle { bottom: 98px; }
+}
+@media (max-width: 640px) {
+  html[data-view="pc"] .cast-jumpbar::before { height: 68px; }
+  html[data-view="pc"] .cast-jumpbar__track { height: calc(102px + env(safe-area-inset-bottom, 0px)); padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px)); }
+  html[data-view="pc"] .cast-jumpbar__item { width: 46px; height: 46px; }
+  html[data-view="pc"] .cast-jumpbar__item.is-near { width: 54px; height: 54px; }
+  html[data-view="pc"] .cast-jumpbar__item.is-active { width: 64px; height: 64px; }
 }
 
 /* jump bar live check 2026-11-11 */
@@ -584,7 +614,7 @@ body:has(.cast-jumpbar) { padding-bottom: calc(72px + env(safe-area-inset-bottom
   border: 1px solid rgba(213, 197, 152, .45); border-radius: 999px;
   box-shadow: 0 8px 24px rgba(13, 32, 39, .35);
 }
-body:has(.cast-jumpbar) .view-toggle { bottom: 86px; }
+body:has(.cast-jumpbar) .view-toggle { bottom: 114px; }
 .view-toggle button {
   appearance: none; border: 0; background: transparent; cursor: pointer;
   padding: 7px 14px; border-radius: 999px;
