@@ -406,6 +406,10 @@ h1 span { display: block; color: var(--blue); font-size: .65em; font-style: ital
   pointer-events: none;
 }
 .hero-glass .glass-accent { stroke: rgba(73,0,1,.55); }
+.hero-circle {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -54%); z-index: 0;
+  width: min(560px, 92vw); height: auto; pointer-events: none;
+}
 .hero .eyebrow, .hero h1, .hero-copy, .hero .round-link, .hero .hero-note { position: relative; z-index: 1; }
 h1.logotype { margin-bottom: 32px; font-size: clamp(58px, 10.5vw, 134px); line-height: .92; letter-spacing: -.015em; }
 h1.logotype .logo-main { display: block; color: var(--wine); font-size: 1em; font-style: normal; }
@@ -492,6 +496,7 @@ h1.logotype .logo-sub::before {
   h1.logotype { font-size: clamp(52px, 15vw, 76px); }
   h1.logotype .logo-sub { transform: translateX(.8em); }
   .hero-glass { width: 118px; right: -28px; opacity: .55; }
+  .hero-circle { width: min(400px, 94vw); }
   .hero-watermark { font-size: 25vw; bottom: 9%; }
   .intro::before { font-size: 104px; top: 26px; }
   .subpage-heading { min-height: 300px; }
@@ -697,6 +702,7 @@ body:has(.cast-jumpbar) .view-toggle { bottom: 114px; }
   html[data-view="sp"] h1.logotype { font-size: clamp(52px, 15vw, 76px); }
   html[data-view="sp"] h1.logotype .logo-sub { transform: translateX(.8em); }
   html[data-view="sp"] .hero-glass { width: 118px; right: -28px; opacity: .55; }
+  html[data-view="sp"] .hero-circle { width: min(400px, 94vw); }
   html[data-view="sp"] .hero-watermark { font-size: 25vw; bottom: 9%; }
   html[data-view="sp"] .intro::before { font-size: 104px; top: 26px; }
   html[data-view="sp"] .subpage-heading { min-height: 300px; }
@@ -783,6 +789,7 @@ body:has(.cast-jumpbar) .view-toggle { bottom: 114px; }
   html[data-view="pc"] h1.logotype { font-size: clamp(58px, 10.5vw, 134px); }
   html[data-view="pc"] h1.logotype .logo-sub { transform: translateX(1.1em); }
   html[data-view="pc"] .hero-glass { width: clamp(150px, 20vw, 250px); right: clamp(2%, 6vw, 9%); opacity: 1; }
+  html[data-view="pc"] .hero-circle { width: min(560px, 92vw); }
   html[data-view="pc"] .hero-watermark { font-size: medium; bottom: auto; }
   html[data-view="pc"] .intro::before { font-size: medium; top: 44px; }
   html[data-view="pc"] .subpage-heading { min-height: 380px; }
